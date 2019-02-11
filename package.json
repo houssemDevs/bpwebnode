@@ -1,0 +1,41 @@
+{
+  "name": "ctrlplan",
+  "version": "1.0.0",
+  "description": "activite phase controle plan",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:build": "./node_modules/.bin/webpack --config webpack.dev.js --watch",
+    "dev:run": "./node_modules/.bin/nodemon ./build/main.js"
+  },
+  "keywords": [
+    "service",
+    "controle",
+    "plan",
+    "activite"
+  ],
+  "author": "GHIAT Houssem",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-logger-middleware": "^1.0.0",
+    "koa-router": "^7.4.0",
+    "tedious": "^5.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-typescript": "^7.1.0",
+    "@types/koa": "^2.0.48",
+    "@types/koa-router": "^7.0.39",
+    "@types/node": "^10.12.24",
+    "babel-loader": "^8.0.5",
+    "nodemon": "^1.18.10",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.3",
+    "webpack": "^4.29.3",
+    "webpack-clean-plugin": "^0.2.3",
+    "webpack-cli": "^3.2.3",
+    "webpack-merge": "^4.2.1"
+  }
+}
