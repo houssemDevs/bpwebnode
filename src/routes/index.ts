@@ -1,10 +1,12 @@
 import koarouter from 'koa-router';
 
-const router = new koarouter();
+import visites from './visites';
 
-router.get('/', async ctx => {
-  ctx.body = 'welcome';
-});
-// TODO: add routes here
+const router = new koarouter({ prefix: '/ctrlcht' });
 
+// visites chantier
+router.use(visites.routes());
+router.use(visites.allowedMethods());
+
+// console.log(router);
 export default router;
