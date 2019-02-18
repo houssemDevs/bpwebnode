@@ -1,8 +1,10 @@
+const path = require('path');
+
 module.exports = {
   apps: [
     {
       name: 'worker',
-      script: './build/main.js',
+      script: path.resolve(__dirname, 'service.js'),
       instances: 2,
       exec_mode: 'cluster',
       watch: true,
@@ -15,15 +17,4 @@ module.exports = {
       },
     },
   ],
-  deploy: {
-    production: {
-      user: 'Administrateur',
-      host: '192.168.0.101',
-      ref: 'master',
-      repo: '.',
-      path: 'D:/WWW/Services/PhaseChantier',
-      ssh_options: 'StrictHostKeyChecking=no',
-      'post-deploy': 'npm install && pm2 startOrRestart .ecosystem.config.js --env production',
-    },
-  },
 };
