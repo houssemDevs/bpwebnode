@@ -16,7 +16,7 @@ module.exports = {
       },
       {
         test: /\.sql$/,
-        loader: 'file-loader',
+        loader: 'raw-loader',
       },
     ],
   },
