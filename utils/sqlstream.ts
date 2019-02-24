@@ -25,6 +25,7 @@ export default class SqlStream extends Readable {
       });
 
       request.on('row', cols => {
+        // for the first row we push the col names.
         if (this.firstRecord) {
           this.firstRecord = false;
           this.push(cols.map(col => col.metadata.colName));
