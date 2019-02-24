@@ -1,4 +1,4 @@
-import { Transform, TransformOptions } from 'stream';
+import { Transform, TransformCallback, TransformOptions } from 'stream';
 
 export default class JSONArrayStream extends Transform {
   private firstObj: boolean;
@@ -6,7 +6,7 @@ export default class JSONArrayStream extends Transform {
     super({ ...options, objectMode: true });
     this.firstObj = true;
   }
-  _transform(buffer: any, encoding: string, done) {
+  public _transform(buffer: any, encoding: string, done: TransformCallback) {
     if (this.firstObj) {
       this.firstObj = false;
       this.push(`[${JSON.stringify(buffer)}`);
@@ -15,7 +15,7 @@ export default class JSONArrayStream extends Transform {
     this.push(`,${JSON.stringify(buffer)}`);
     return done();
   }
-  _flush(done) {
+  public _flush(done: TransformCallback) {
     this.push(']');
     done();
   }

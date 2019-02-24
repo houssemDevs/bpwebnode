@@ -1,5 +1,5 @@
-import { Connection, ConnectionConfig, Request } from 'tedious';
 import { Readable, ReadableOptions } from 'stream';
+import { Connection, ConnectionConfig, Request } from 'tedious';
 
 export default class SqlStream extends Readable {
   constructor(query: string, config: ConnectionConfig, options?: ReadableOptions) {
@@ -12,6 +12,7 @@ export default class SqlStream extends Readable {
         connection.close();
         return;
       }
+// tslint:disable-next-line: no-shadowed-variable
       const request = new Request(query, err => {
         if (err) {
           this.emit('error', err);
@@ -30,5 +31,6 @@ export default class SqlStream extends Readable {
       connection.execSql(request);
     });
   }
-  _read() {}
+// tslint:disable-next-line: no-empty
+  public _read() {}
 }
