@@ -4,7 +4,7 @@ const merge = require('webpack-merge');
 const cleanBuildDir = require('clean-webpack-plugin');
 
 module.exports = merge(require('./webpack.common'), {
-  mode: 'development',
+  mode: 'production',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'service.js',
