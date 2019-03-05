@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:build": "./node_modules/.bin/webpack --config webpack.dev.js --watch",
-    "dev:run": "./node_modules/.bin/nodemon ./build/main.js",
+    "dev:run": "./node_modules/.bin/nodemon ./build/service.js",
     "prod": "./node_modules/.bin/webpack --config webpack.prod.js",
     "deploy": "deploy.bat"
   },
@@ -17,7 +17,9 @@
   "license": "MIT",
   "dependencies": {
     "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
     "koa-logger-middleware": "^1.0.0",
+    "koa-passport": "^4.1.1",
     "koa-router": "^7.4.0",
     "tedious": "^5.0.3"
   },
@@ -26,6 +28,8 @@
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-typescript": "^7.1.0",
     "@types/koa": "^2.0.48",
+    "@types/koa-bodyparser": "^4.2.2",
+    "@types/koa-passport": "^4.0.2",
     "@types/koa-router": "^7.0.39",
     "@types/node": "^10.12.26",
     "@types/tedious": "^2.6.1",
