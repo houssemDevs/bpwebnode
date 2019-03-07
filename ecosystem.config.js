@@ -4,14 +4,13 @@ module.exports = {
   apps: [
     {
       name: 'service',
-      script: path.resolve(__dirname, 'main.js'),
+      script: path.resolve(__dirname, 'service.js'),
       env: {
         NODE_ENV: 'development',
-        PORT: 3000,
       },
       env_production: {
         NODE_ENV: 'production',
-        PORT: 6000
+        PORT: 6000,
       },
     },
   ],
