@@ -20,7 +20,9 @@
     "koa-logger-middleware": "^1.0.0",
     "koa-passport": "^4.1.1",
     "koa-router": "^7.4.0",
-    "tedious": "^5.0.3"
+    "node-ipc": "^9.1.1",
+    "tedious": "^5.0.3",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -31,11 +33,14 @@
     "@types/koa-passport": "^4.0.2",
     "@types/koa-router": "^7.0.39",
     "@types/node": "^10.12.26",
+    "@types/node-ipc": "^9.1.1",
     "@types/tedious": "^2.6.1",
+    "@types/uuid": "^3.4.4",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^1.0.1",
     "nodemon": "^1.18.10",
     "raw-loader": "^1.0.0",
+    "ts-loader": "^5.3.3",
     "tslint": "^5.12.1",
     "typescript": "^3.3.3",
     "webpack": "^4.29.3",

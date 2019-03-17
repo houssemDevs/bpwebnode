@@ -6,12 +6,15 @@ module.exports = {
     __filename: false,
     __dirname: false,
   },
-  entry: path.resolve(__dirname, 'src', 'main.ts'),
+  entry: {
+    service: path.resolve(__dirname, './src/main.ts'),
+    worker: path.resolve(__dirname, './src/workers/worker.ts'),
+  },
   module: {
     rules: [
       {
         test: /\.ts$/,
-        loader: 'babel-loader',
+        loader: 'ts-loader',
         exclude: /node_modules/,
       },
       {
@@ -21,6 +24,13 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.ts', '.js', '.sql'],
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      '@workers': path.resolve(__dirname, './src/workers'),
+      '@services': path.resolve(__dirname, './src/services'),
+      '@assets': path.resolve(__dirname, './src/assets'),
+      '@middlewares': path.resolve(__dirname, './src/middlewares'),
+    },
+    extensions: ['.ts', '.js'],
   },
 };

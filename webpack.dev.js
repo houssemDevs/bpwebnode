@@ -7,7 +7,7 @@ module.exports = merge(require('./webpack.common'), {
   mode: 'development',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'service.js',
+    filename: '[name].js',
   },
   plugins: [new cleanBuildDir(['build'], { root: __dirname, verbose: true })],
 });
