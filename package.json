@@ -1,7 +1,7 @@
 {
-  "name": "service",
+  "name": "alerts_service",
   "version": "1.0.0",
-  "description": "a nodejs and koa based web service",
+  "description": "a web service to get CTC alerts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:build": "./node_modules/.bin/webpack --config webpack.dev.js --watch",

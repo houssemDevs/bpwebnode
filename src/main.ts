@@ -14,4 +14,4 @@ server.use(router.allowedMethods());
 
 const port = process.env.PORT || 4000;
 
-server.listen(port, () => console.log(`my service on ${port} ...`));
+server.listen(port, () => console.log(`alerts service on ${port} ...`));

@@ -3,14 +3,14 @@ const path = require('path');
 module.exports = {
   apps: [
     {
-      name: 'service',
+      name: 'alerts_service',
       script: path.resolve(__dirname, 'service.js'),
       env: {
         NODE_ENV: 'development',
       },
       env_production: {
         NODE_ENV: 'production',
-        PORT: 6000,
+        PORT: 6602,
       },
     },
   ],
