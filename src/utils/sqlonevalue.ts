@@ -1,9 +1,10 @@
-import { ColumnValue, Connection, ConnectionConfig, Request } from 'tedious';
+import { ColumnValue, Connection, ConnectionConfig, ConnectionOptions, Request } from 'tedious';
 
 export default class SqlOneValue {
   private query: string;
   private cnn: Promise<Connection>;
   constructor(query: string, config: ConnectionConfig) {
+    config.options = {...config.options, rowCollectionOnRequestCompletion: true };
     this.query = query;
     this.cnn = new Promise((res, rej) => {
       const conn = new Connection(config);
