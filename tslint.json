@@ -13,7 +13,9 @@
     "quotemark": false,
     "arrow-parens": false,
     "trailing-comma": false,
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "variable-name": [true, "allow-snake-case"],
+    "unified-signatures": false
   },
   "rulesDirectory": []
 }

@@ -1,13 +1,14 @@
 {
   "name": "service",
   "version": "1.0.0",
-  "description": "a nodejs and koa based web service",
+  "description": "a nodejs-koa based web service",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:build": "./node_modules/.bin/webpack --config webpack.dev.js --watch",
     "dev:run": "./node_modules/.bin/nodemon ./build/service.js",
     "prod": "./node_modules/.bin/webpack --config webpack.prod.js",
-    "deploy": "deploy.bat"
+    "deploy": "deploy.bat",
+    "doc": "./node_modules/.bin/typedoc"
   },
   "keywords": [
     "service"
@@ -20,26 +21,33 @@
     "koa-logger-middleware": "^1.0.0",
     "koa-passport": "^4.1.1",
     "koa-router": "^7.4.0",
-    "tedious": "^5.0.3"
+    "node-ipc": "^9.1.1",
+    "tedious": "^5.0.3",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "@babel/preset-typescript": "^7.1.0",
     "@types/koa": "^2.0.48",
     "@types/koa-bodyparser": "^4.2.2",
     "@types/koa-passport": "^4.0.2",
-    "@types/koa-router": "^7.0.39",
-    "@types/node": "^10.12.26",
+    "@types/koa-router": "^7.0.40",
+    "@types/node": "^10.14.1",
+    "@types/node-ipc": "^9.1.1",
     "@types/tedious": "^2.6.1",
+    "@types/uuid": "^3.4.4",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^1.0.1",
+    "copy-webpack-plugin": "^5.0.1",
     "nodemon": "^1.18.10",
     "raw-loader": "^1.0.0",
-    "tslint": "^5.12.1",
+    "ts-loader": "^5.3.3",
+    "tslint": "^5.14.0",
+    "typedoc": "^0.14.2",
     "typescript": "^3.3.3",
-    "webpack": "^4.29.3",
-    "webpack-cli": "^3.2.3",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
     "webpack-merge": "^4.2.1"
   }
 }
