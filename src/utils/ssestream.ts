@@ -2,7 +2,7 @@ import { Context } from 'koa';
 import { Transform, TransformOptions } from 'stream';
 import { isObject } from 'util';
 
-export default class SimpleSSE extends Transform {
+export default class SSEStream extends Transform {
   private ctx: Context;
   private log: boolean;
   private ended: boolean;
@@ -38,7 +38,7 @@ export default class SimpleSSE extends Transform {
     this.ended = true;
     super.end(data, encoding, done);
   }
-  
+
   public _transform(data: any, encoding: string, done: () => void) {
     let subject: any;
     const resp = [];
