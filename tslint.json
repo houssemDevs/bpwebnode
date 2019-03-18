@@ -11,7 +11,9 @@
   "rules": {
     "no-console": false,
     "quotemark": false,
-    "arrow-parens": false
+    "arrow-parens": false,
+    "trailing-comma": false,
+    "object-literal-sort-keys": false
   },
   "rulesDirectory": []
 }

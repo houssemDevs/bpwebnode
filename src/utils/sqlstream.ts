@@ -1,11 +1,13 @@
 import { Readable, ReadableOptions } from 'stream';
-import { Connection, ConnectionConfig, Request } from 'tedious';
+import { ColumnValue, Connection, ConnectionConfig, Request } from 'tedious';
 
 export default class SqlStream extends Readable {
-  private firstRecord: boolean;
-  constructor(query: string, config: ConnectionConfig, options?: ReadableOptions) {
+  constructor(
+    query: string,
+    config: ConnectionConfig,
+    options?: ReadableOptions
+  ) {
     super({ ...options, objectMode: true });
-    this.firstRecord = true;
     const connection = new Connection(config);
     connection.on('connect', err => {
       if (err) {
@@ -14,7 +16,7 @@ export default class SqlStream extends Readable {
         connection.close();
         return;
       }
-// tslint:disable-next-line: no-shadowed-variable
+      // tslint:disable-next-line: no-shadowed-variable
       const request = new Request(query, err => {
         if (err) {
           this.emit('error', err);
@@ -24,18 +26,21 @@ export default class SqlStream extends Readable {
         return;
       });
 
-      request.on('row', cols => {
-        // for the first row we push the col names.
-        if (this.firstRecord) {
-          this.firstRecord = false;
-          this.push(cols.map(col => col.metadata.colName));
-        }
-        this.push(cols.map(col => col.value));
+      request.on('row', (cols: ColumnValue[]) => {
+        this.push(
+          cols.reduce(
+            (obj, col) => ({
+              ...obj,
+              [col.metadata.colName]: col.value,
+            }),
+            {}
+          )
+        );
       });
 
       connection.execSql(request);
     });
   }
-// tslint:disable-next-line: no-empty
+  // tslint:disable-next-line: no-empty
   public _read() {}
 }
