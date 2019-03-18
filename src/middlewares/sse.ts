@@ -1,7 +1,17 @@
 import { Context } from 'koa';
 import SimpleSSE from '@utils/sse';
 
-export default (log: boolean = true, closeEvent: string = 'closeSSE') => async (
+interface IsseOpts {
+  log: boolean;
+  closeEvent: string;
+}
+
+const defaultOpts: IsseOpts = {
+  log: false,
+  closeEvent: 'SSEEnd'
+}
+
+export default (options: IsseOpts = defaultOpts) => async (
   ctx: Context,
   next: any,
 ) => {
@@ -10,7 +20,7 @@ export default (log: boolean = true, closeEvent: string = 'closeSSE') => async (
     await next();
     return;
   }
-  const sse = new SimpleSSE(ctx, log, '', closeEvent);
+  const sse = new SimpleSSE(ctx, options.log, options.closeEvent);
   ctx.sse = sse;
   ctx.body = sse;
   await next();
