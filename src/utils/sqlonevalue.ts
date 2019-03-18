@@ -1,5 +1,9 @@
 import { ColumnValue, Connection, ConnectionConfig, ConnectionOptions, Request } from 'tedious';
 
+interface IResult {
+  [s:string]: any;
+}
+
 export default class SqlOneValue {
   private query: string;
   private cnn: Promise<Connection>;
@@ -18,10 +22,10 @@ export default class SqlOneValue {
     });
   }
 
-  public getValue(): Promise<ColumnValue[]> {
+  public getValue(): Promise<IResult> {
     return new Promise((res, rej) => {
       this.cnn.then(c => {
-        const req = new Request(this.query, (err, rowCount, rows) => {
+        const req = new Request(this.query, (err, rowCount, rows: ColumnValue[]) => {
           if (err) {
             rej(err);
           } else if (rowCount <= 0) {
@@ -29,7 +33,7 @@ export default class SqlOneValue {
           } else if (rowCount > 1) {
             rej(new Error('multiple values.'));
           } else {
-            res(rows);
+            res(rows.map(col => ({[col.metadata.colName]: col.value})).reduce((obj,v)=>({...obj, ...v}),{}));
           }
         });
         c.execSql(req);
