@@ -7,7 +7,8 @@
     "dev:build": "./node_modules/.bin/webpack --config webpack.dev.js --watch",
     "dev:run": "./node_modules/.bin/nodemon ./build/service.js",
     "prod": "./node_modules/.bin/webpack --config webpack.prod.js",
-    "deploy": "deploy.bat"
+    "deploy": "deploy.bat",
+    "doc": "./node_modules/.bin/typedoc"
   },
   "keywords": [
     "service"
@@ -42,6 +43,7 @@
     "raw-loader": "^1.0.0",
     "ts-loader": "^5.3.3",
     "tslint": "^5.12.1",
+    "typedoc": "^0.14.2",
     "typescript": "^3.3.3",
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
