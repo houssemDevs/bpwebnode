@@ -1,6 +1,5 @@
 import { Readable, ReadableOptions } from 'stream';
 import { ColumnValue, Connection, ConnectionConfig, Request } from 'tedious';
-import { isArray } from 'util';
 
 export default class SqlStreamWithFallBack extends Readable {
   private cnn_configs: ConnectionConfig[];
@@ -8,7 +7,11 @@ export default class SqlStreamWithFallBack extends Readable {
   private main_config: boolean;
   private query: string;
   private first_payload: boolean;
-  constructor(query: string, configs: ConnectionConfig[], options?: ReadableOptions) {
+  constructor(
+    query: string,
+    configs: ConnectionConfig[],
+    options?: ReadableOptions
+  ) {
     super({ ...options, objectMode: true });
     this.current_config = 0;
     this.cnn_configs = configs;
