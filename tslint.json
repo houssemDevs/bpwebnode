@@ -12,8 +12,12 @@
     "no-console": false,
     "quotemark": false,
     "arrow-parens": false,
+<<<<<<< HEAD
     "trailing-comma": false,
     "object-literal-sort-keys": false
+=======
+    "variable-name": [true, "allow-snake-case"]
+>>>>>>> d41b141d6caa0c8d70d5e773d3f66d5d73b1e24c
   },
   "rulesDirectory": []
 }

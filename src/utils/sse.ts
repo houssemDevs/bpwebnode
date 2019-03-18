@@ -22,9 +22,9 @@ export default class SimpleSSE extends Transform {
     this.ended = false;
     this.traceId = traceId;
     this.ctx.set({
+      'Cache-Control': 'no-cache',
       "Connection": 'keep-alive',
       'Content-Type': 'text/event-stream',
-      'Cache-Control': 'no-cache',
     });
     this.ctx.req.socket.setTimeout(0);
     this.ctx.req.socket.setKeepAlive(true);
@@ -32,6 +32,7 @@ export default class SimpleSSE extends Transform {
   }
 
   public end(data: any): void;
+  // tslint:disable-next-line:unified-signatures
   public end(data: any, encoding?: string): void;
   public end(data: any, encoding?: string, callback?: () => void): void {
     if (!data && !this.ended) {
