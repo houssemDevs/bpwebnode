@@ -1,7 +1,7 @@
 {
   "name": "service",
   "version": "1.0.0",
-  "description": "a nodejs and koa based web service",
+  "description": "a nodejs-koa based web service",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev:build": "./node_modules/.bin/webpack --config webpack.dev.js --watch",
@@ -39,6 +39,7 @@
     "@types/uuid": "^3.4.4",
     "babel-loader": "^8.0.5",
     "clean-webpack-plugin": "^1.0.1",
+    "copy-webpack-plugin": "^5.0.1",
     "nodemon": "^1.18.10",
     "raw-loader": "^1.0.0",
     "ts-loader": "^5.3.3",

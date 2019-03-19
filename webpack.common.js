@@ -1,4 +1,5 @@
 const path = require('path');
+const copyplugin = require('copy-webpack-plugin');
 
 module.exports = {
   target: 'node',
@@ -33,4 +34,5 @@ module.exports = {
     },
     extensions: ['.ts', '.js'],
   },
+  plugins: [new copyplugin([{ from: 'ecosystem.config.js' }])],
 };
