@@ -36,25 +36,21 @@ export default class SqlOneValue {
 
   /**
    * return a promise which will be resolved if any value is got from query,
-   * other wise the promise will be reject if no value is returned or multiple values are returnred.
-   * @returns {Promise<IResult>}
+   * other wise the promise will be reject if multiple values are returnred.
+   * if there was no records an empty object is returned.
+   * @returns {Promise<any>}
    */
-  public getValue(): Promise<IResult> {
-    return new Promise((res, rej) => {
-      this.cnn.then(c => {
-        const req = new Request(this.query, (err, rowCount, rows: ColumnValue[]) => {
-          if (err) {
-            rej(err);
-          } else if (rowCount <= 0) {
-            rej(new Error('no value found.'));
-          } else if (rowCount > 1) {
-            rej(new Error('multiple values.'));
-          } else {
-            res(rows.reduce((obj, v) => ({ ...obj, [v.metadata.colName]: v.value }), {}));
-          }
-        });
-        c.execSql(req);
-      });
+  public async getValue(): Promise<any> {
+    const cnn = await this.cnn;
+    const req = new Request(this.query, (err, rowCount, rows: ColumnValue[][]) => {
+      if (err) {
+        throw err;
+      } else if (rowCount > 1) {
+        throw new Error('multiple values.');
+      } else {
+        return rows[0].reduce((obj, v) => ({ ...obj, [v.metadata.colName]: v.value }), {});
+      }
     });
+    cnn.execSql(req);
   }
 }
