@@ -1,21 +1,32 @@
 import { Transform, TransformCallback, TransformOptions } from 'stream';
+import { IStreamReduxResult } from './types';
 
-interface ICollection {
-  main_source: boolean;
-  list: any[];
-}
-
+/**
+ * Reduce an SqlStreamWithFallback data, and produce
+ * a single object of type IStreamReduxResult.
+ *
+ * @export
+ * @class SqlStreamWithFallbackReduce
+ * @extends {Transform}
+ */
 export default class SqlStreamWithFallbackReduce extends Transform {
-  private collection: any;
-  private first_payload: boolean;
+  private collection: IStreamReduxResult;
+  private metadata_recived: boolean;
+
+  /**
+   * Creates an instance of SqlStreamWithFallbackReduce.
+   * @param {TransformOptions} [options] Transform stream options.
+   * @memberof SqlStreamWithFallbackReduce
+   */
   constructor(options?: TransformOptions) {
     super({ ...options, objectMode: true });
-    this.first_payload = true;
-    this.collection = {};
+    this.metadata_recived = false;
+    this.collection = { main_source: false, list: [] };
   }
   public _transform(buffer: any, encoding: string, done: TransformCallback) {
-    if (this.first_payload) {
+    if (!this.metadata_recived) {
       this.collection = { ...buffer };
+      this.metadata_recived = true;
       return done();
     }
     this.collection.list.push(buffer);
