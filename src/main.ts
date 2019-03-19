@@ -1,11 +1,13 @@
 import koa from 'koa';
 import koalogger from 'koa-logger-middleware';
 
+import errorMiddleware from '@middlewares/error';
 import idMiddleware from '@middlewares/id';
 import router from './routes';
 
 const server = new koa();
 
+server.use(errorMiddleware);
 server.use(idMiddleware);
 server.use(koalogger());
 
