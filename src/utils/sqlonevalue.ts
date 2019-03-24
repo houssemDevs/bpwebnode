@@ -42,15 +42,17 @@ export default class SqlOneValue {
    */
   public async getValue(): Promise<any> {
     const cnn = await this.cnn;
-    const req = new Request(this.query, (err, rowCount, rows: ColumnValue[][]) => {
-      if (err) {
-        throw err;
-      } else if (rowCount > 1) {
-        throw new Error('multiple values.');
-      } else {
-        return rows[0].reduce((obj, v) => ({ ...obj, [v.metadata.colName]: v.value }), {});
-      }
+    return new Promise((res, rej) => {
+      const req = new Request(this.query, (err, rowCount, rows: ColumnValue[][]) => {
+        if (err) {
+          rej(err);
+        } else if (rowCount > 1) {
+          rej(new Error('multiple values.'));
+        } else {
+          res(rows[0].reduce((obj, v) => ({ ...obj, [v.metadata.colName]: v.value }), {}));
+        }
+      });
+      cnn.execSql(req);
     });
-    cnn.execSql(req);
   }
 }
